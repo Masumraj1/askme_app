@@ -1,5 +1,6 @@
 import 'package:askme/app/global/helper/extension.dart';
 import 'package:askme/app/view/screens/bonus/bonus_screen.dart';
+import 'package:askme/app/view/screens/dart/dart_answer/dart_answer_screen.dart';
 import 'package:askme/app/view/screens/dart/dart_screen.dart';
 import 'package:askme/app/view/screens/flutter/flutter_screen.dart';
 import 'package:askme/app/view/screens/splash_screen/splash_screen.dart';
@@ -36,12 +37,26 @@ class AppRouter {
         ),
 
         GoRoute(
+          name: RoutePath.dartAnswerScreen,
+          path: RoutePath.dartAnswerScreen.addBasePath,
+          pageBuilder: (context, state) {
+            final data = state.extra as Map<String, String>;
+            return _buildPageWithAnimation(
+              child: DartAnswerScreen(
+                question: data['question'] ?? '',
+                answer: data['answer'] ?? '',
+              ),
+              state: state,
+            );
+          },
+        ),
+
+
+        GoRoute(
           name: RoutePath.flutterScreen,
           path: RoutePath.flutterScreen.addBasePath,
           pageBuilder: (context, state) => _buildPageWithAnimation(
-              child:  FlutterScreen(),
-              state: state,
-              disableAnimation: true),
+              child: FlutterScreen(), state: state, disableAnimation: true),
         ),
 
         GoRoute(

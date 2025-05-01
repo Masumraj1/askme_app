@@ -1,3 +1,5 @@
+import 'package:askme/app/core/route_path.dart';
+import 'package:askme/app/core/routes.dart';
 import 'package:askme/app/utils/app_constants.dart';
 import 'package:askme/app/view/common_widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:askme/app/view/common_widgets/custom_silver_appbar/custom_silver_appbar.dart';
@@ -30,24 +32,32 @@ class DartScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  elevation: 5,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(10),
-                    title: Text(
-                      homeController.qnaList[index]['question']!,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                return GestureDetector(
+                  onTap: () {
+                    final data = {
+                      'question': homeController.qnaList[index]['question']!,
+                      'answer': homeController.qnaList[index]['answer']!,
+                    };
+                    AppRouter.route.pushNamed(RoutePath.dartAnswerScreen,extra: data);
+
+                  },
+
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    subtitle: Text(
-                      homeController.qnaList[index]['answer']!,
-                      style: const TextStyle(fontSize: 16, color: Colors.black54),
+                    elevation: 5,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(10),
+                      title: Text(
+                        homeController.qnaList[index]['question']!,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+
                     ),
                   ),
                 );
