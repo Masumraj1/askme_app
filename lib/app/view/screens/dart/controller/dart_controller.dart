@@ -21,6 +21,8 @@ class DartController extends GetxController {
   }
 
   String get fullVisibleText => visibleWords.join(' ');
+
+
   final List<Map<String, String>> qnaList = [
     {
       'question': 'What is Dart?',
@@ -42,6 +44,12 @@ class DartController extends GetxController {
       * যদি কোনো ভ্যারিয়েবলের মান রানটাইমে নির্ধারিত হয়, তাহলে final ব্যবহার করবো,
       আর যদি ভ্যারিয়েবলের মান কম্পাইল টাইমে নির্ধারিত হয়, তাহলে const ব্যবহার করবো।
         ''',
+    },
+    {
+      'question': 'What is Dart?',
+      'answer':
+      'Dart is a programming language used to build mobile, desktop, and server apps. '
+          'It is the language behind Flutter.',
     },
   ];
 }
